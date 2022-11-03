@@ -8,5 +8,8 @@ if (environment.production) {
   enableProdMode();
 }
 
+/*
+ * SoftUni Example: https://github.com/IliaIdakiev/ng-softuni-2022
+ */
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
