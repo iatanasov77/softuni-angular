@@ -1,0 +1,41 @@
+<li class="nav-item dropdown btn-group">
+    <a  id="btnLoginForm"
+        class="nav-link  dropdown-toggle"
+        href="#"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+    >
+        Login
+    </a>
+    <div class="dropdown-menu dropdown-menu-right dropdown-login-form">
+        <form class="px-4 py-3" id="formLogin" #f="ngForm" (ngSubmit)="onSubmit(f)" >
+            <div class="form-group">
+                <label for="exampleDropdownFormUsername">Username</label>
+                <input type="text" name="username"
+                    class="form-control"
+                    id="exampleDropdownFormUsername"
+                    placeholder="Username"
+                />
+            </div>
+            <div class="form-group">
+                <label for="exampleDropdownFormPassword1">Password</label>
+                <input type="password" name="password" 
+                    class="form-control" 
+                    id="exampleDropdownFormPassword1"
+                    placeholder="Password"
+                />
+            </div>
+        
+            <div class="row">
+                <div class="col-12">
+                    <span class="mr-2">if you have not an account,</span>
+                    <a href="/register" (click)="onClickRegistration()">create from here</a>
+                </div>
+            </div>
+            <div class="row">&nbsp;</div>
+            
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</li>

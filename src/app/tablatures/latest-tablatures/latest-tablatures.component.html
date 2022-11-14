@@ -1,0 +1,26 @@
+<div *ngIf="errorFetcingData">Error loading Tablatures</div>
+<app-loader *ngIf="!tablatures"></app-loader>
+
+<div class="tablatures-container" style="margin-top: 110px;">
+    <div class="card">
+        <h5 class="card-header">Latest Tablatures</h5>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Artist</th>
+                        <th>Song</th>
+                        <th>Owner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr app-tablature-item *ngFor="let tab of tablatures"
+                        [tablature]="tab"
+                    >
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

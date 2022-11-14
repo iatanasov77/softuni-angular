@@ -1,0 +1,38 @@
+<li class="nav-item">
+    <a href="/" class="nav-link">
+        Latest Tablatures
+    </a>
+</li>
+
+<ng-template [ngIf]="isLoggedIn" [ngIfElse]="loggedOut">
+    <li class="nav-item">
+        <a href="/tablatures" class="nav-link">
+            My Tablatures
+        </a>
+    </li>
+    
+    <li class="nav-item">
+        <a href="/favorites" class="nav-link">
+            My Favorites
+        </a>
+    </li>
+    
+    <app-tablature-create></app-tablature-create>
+    
+    <li class="nav-item">
+        <a href="/logout" class="nav-link">
+            <i class="fas fa-power-off mr-2"></i>Logout
+        </a>
+    </li>
+</ng-template>
+
+
+<ng-template #loggedOut>
+    <app-user-login></app-user-login>
+    
+    <li class="nav-item">
+        <a href="/register" class="nav-link">
+            Register
+        </a>
+    </li>
+</ng-template>

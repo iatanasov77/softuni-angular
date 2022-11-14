@@ -1,0 +1,87 @@
+<li class="nav-item dropdown btn-group">
+	<a id="btnSubmitTablature"
+	    href="#"
+	    class="nav-link dropdown-toggle"
+	    data-toggle="dropdown"
+	    aria-haspopup="true"
+	    aria-expanded="false"
+	>
+	    Add Tablature
+	</a>
+	
+	<div class="dropdown-menu dropdown-menu-right dropdown-tablature-form">
+	   
+        <form class="px-4 py-3" onSubmit={onSubmit} >
+	            
+            <div class="form-check mb-3">
+                <input
+                    type="checkbox"
+                    id="tablature_form_enabled"
+                    name="published"
+                    class="form-check-input"
+                    
+                    onChange={onChange}
+                    checked={tablature.published}
+                />
+                <label class="form-check-label" htmlFor="tablature_form_enabled">To Be Public</label>
+            </div>
+            
+            <div class="form-group">
+                <label htmlFor="tablature_form_artist" class="required">Artist</label>
+                <input
+                    type="text"
+                    id="tablature_form_artist"
+                    name="artist"
+                    required="required"
+                    class="form-control"
+                    
+                    onChange={onChange}
+                    value={tablature.artist}
+                />
+            </div>
+            
+            <div class="form-group">
+                <label htmlFor="tablature_form_song" class="required">Song</label>
+                <input
+                    type="text"
+                    id="tablature_form_song"
+                    name="song"
+                    required="required"
+                    class="form-control"
+                    
+                    onChange={onChange}
+                    value={tablature.song}
+                />
+            </div>
+            
+            <div class="form-group">
+                <label htmlFor="tablature_form_tablature" class="required">Tablature</label>
+                <div class="custom-file">
+                    <input
+                        type="file"
+                        accept=".gp,.gp3,.gp4,.gp5,audio/x-guitar-pro"
+                        id="tablature_form_tablature"
+                        name="tablature_file"
+                        class="custom-file-input"
+                        onChange={onSelectTablatureFile}
+                    />
+                    <label
+                        id="tablature_form_tablature_label" 
+                        class="custom-file-label"
+                        htmlFor="tablature_form_tablature"
+                    >Choose a file</label>
+                </div>
+            </div>
+            
+            <div class="form-group mt-5">
+                <button
+                    type="submit"
+                    id="tablature_form_btnSave"
+                    name="submit"
+                    class="btn-primary btn"
+                >Save</button>
+            </div>
+        </form>
+	            
+    </div>
+</li>

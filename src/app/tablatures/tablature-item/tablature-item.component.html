@@ -1,0 +1,16 @@
+<td>{{ tablature.artist }}</td>
+<td>{{ tablature.song }}</td>
+<td>{{ tablature.owner }}</td>
+<td>
+    <a href="/tablatures/{{ tablature.id }}/play" class="btn btn-primary" >
+        Play
+    </a>
+    
+    <!-- Only on Tablatures That The Current User is Owner -->
+    <a *ngIf="tablature.createdBy == user.id" href="/tablatures/{{ tablature.id }}/update" class="btn btn-primary ml-4" >
+        Edit
+    </a>
+    <a *ngIf="tablature.createdBy == user.id" href="/tablatures/{{ tablature.id }}/delete" class="btn btn-primary ml-4" >
+        Delete
+    </a>
+</td>
