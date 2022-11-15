@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AppRoutingModule } from '../app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -22,6 +23,8 @@ import { TablaturesModule } from '../tablatures/tablatures.module';
     ],
     imports: [
         CommonModule,
+        
+        AppRoutingModule,
         AuthenticationModule,
         TablaturesModule
     ],

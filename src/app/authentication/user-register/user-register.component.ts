@@ -21,6 +21,7 @@ export class UserRegisterComponent implements OnInit
     
     hasError?: boolean;
     formData: any;
+    formErrors: any;
     
     constructor( private apiService: ApiService ) { }
     
@@ -33,7 +34,6 @@ export class UserRegisterComponent implements OnInit
         this.hasError    = f.valid as boolean;
         this.formData    = f.value;
         
-           
         if ( this.hasError ) {
             $( '#registrationFormError' ).removeClass( 'd-none' );
             $( '#registrationFormError' ).addClass( 'show' );
