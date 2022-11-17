@@ -37,7 +37,7 @@
                 <div class="mt-1">
                     <mv-slider
                         [(value)]="track.playbackInfo.volume"
-                        (change)="changeTrackVolumeHandler( track, $event )"
+                        (slide)="changeTrackVolumeHandler( track, $event )"
                         [min]="0"
                         [max]="16"
                         [enabled]="true"

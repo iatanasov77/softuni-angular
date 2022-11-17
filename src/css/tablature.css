@@ -75,3 +75,7 @@
     z-index: -999;   
 }
 
+.tooltip.in {
+    opacity: 1;
+}
+

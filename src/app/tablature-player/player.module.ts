@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RestangularModule } from 'ngx-restangular';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 
@@ -40,6 +41,7 @@ import { TracksItemComponent } from './player-controls/tracks-item/tracks-item.c
     ],
     imports: [
         CommonModule,
+        MatTooltipModule,
         RestangularModule,
         NgxBootstrapSliderModule,
         

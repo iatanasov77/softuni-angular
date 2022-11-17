@@ -108,13 +108,13 @@ export class TracksItemComponent implements OnInit
     }
     
     changeTrackVolumeHandler( track: any, event: any ): void
-    {    
-        //alert( 'Track Index: ' + trackIndex + '<br>Volume Value: ' + event.target.value );
+    {
         if ( this.player && this.player.score ) {
-            this.scoreTracks[track.index].playbackInfo.volume   = event.target.value;
+            //console.log( event );
+            this.scoreTracks[track.index].playbackInfo.volume   = event;
             this.player.changeTrackVolume(
                 [ track ],
-                event.target.value / track.playbackInfo.volume
+                event / 16
             );
         }
     }
