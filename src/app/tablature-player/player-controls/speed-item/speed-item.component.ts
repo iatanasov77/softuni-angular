@@ -55,9 +55,4 @@ export class SpeedItemComponent implements OnInit
         $( '#speed-selector-value' ).text( speed.text );
         $( event.target ).closest( ".dropdown-menu" ).toggleClass( 'show' );
     }
-    
-    debugDropdown( event: any ): void
-    {
-        alert( 'CLICKED !!!' );
-    }
 }
