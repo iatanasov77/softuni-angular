@@ -26,7 +26,7 @@ export class TracksItemComponent implements OnInit
     ngOnInit(): void
     {
         if ( this.player && this.player.score ) {
-            this.setTracks( this.player.score.tracks );
+            this.scoreTracks    = this.player.score.tracks;
         }
     }
     
@@ -39,11 +39,6 @@ export class TracksItemComponent implements OnInit
         firstTrack.find( '.showHide' ).removeClass( 'fa-eye-slash' ).addClass( 'fa-eye' );
     }
     
-    setTracks( tracks: any ): void
-    {
-        this.scoreTracks    = tracks;
-    }
-
     resetElements(): void
     {
         if ( this.document ) {
@@ -111,7 +106,6 @@ export class TracksItemComponent implements OnInit
     {
         if ( this.player && this.player.score ) {
             //console.log( event );
-            this.scoreTracks[track.index].playbackInfo.volume   = event;
             this.player.changeTrackVolume(
                 [ track ],
                 event / 16
