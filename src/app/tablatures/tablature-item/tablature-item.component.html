@@ -2,7 +2,7 @@
 <td>{{ tablature.song }}</td>
 <td>{{ tablature.owner }}</td>
 <td>
-    <a href="/tablatures/{{ tablature.id }}/play" class="btn btn-primary" >
+    <a [routerLink]="['/tablatures/', tablature.id, 'play']" class="btn btn-primary" >
         Play
     </a>
     

@@ -8,6 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { ButtonIconsComponent } from './button-icons/button-icons.component';
 import { ModalTacComponent } from './modal-tac/modal-tac.component';
+import { ModalInformationComponent } from './modal-information/modal-information.component';
 
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { TablaturesModule } from '../tablatures/tablatures.module';
@@ -19,7 +20,8 @@ import { TablaturesModule } from '../tablatures/tablatures.module';
         NavigationComponent,
         AlertsComponent,
         ButtonIconsComponent,
-        ModalTacComponent
+        ModalTacComponent,
+        ModalInformationComponent
     ],
     imports: [
         CommonModule,
@@ -34,7 +36,8 @@ import { TablaturesModule } from '../tablatures/tablatures.module';
         NavigationComponent,
         AlertsComponent,
         ButtonIconsComponent,
-        ModalTacComponent
+        ModalTacComponent,
+        ModalInformationComponent
     ]
 })
 export class CoreModule { }

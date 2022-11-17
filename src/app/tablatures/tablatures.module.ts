@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestangularModule } from 'ngx-restangular';
+import { RouterModule } from '@angular/router';
 
 import { LatestTablaturesComponent } from './latest-tablatures/latest-tablatures.component';
 import { TablatureItemComponent } from './tablature-item/tablature-item.component';
@@ -16,8 +17,9 @@ import { SharedModule } from '../shared/shared.module';
     ],
     imports: [
         CommonModule,
-        RestangularModule,  // Importing RestangularModule
-    
+        RestangularModule,
+        RouterModule,
+        
         SharedModule,
     ],
     exports: [

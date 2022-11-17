@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 
 import { SharedModule } from './shared/shared.module';
+import { PlayerModule } from './tablature-player/player.module';
 import { TablaturesModule } from './tablatures/tablatures.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 
@@ -15,7 +16,7 @@ import { RestangularModule } from 'ngx-restangular';
 import { environment } from '../environments/environment';
 
 export function RestangularConfigFactory ( RestangularProvider: any ) {
-    RestangularProvider.setBaseUrl( environment.apiURL );
+    RestangularProvider.setBaseUrl( environment.backendURL + '/api' );
     
     RestangularProvider.addResponseInterceptor( ( data: any, operation: any ) => {
         function populateHref( _data: any ) {
@@ -58,6 +59,7 @@ export function RestangularConfigFactory ( RestangularProvider: any ) {
         RestangularModule.forRoot( RestangularConfigFactory ),
         
         SharedModule,
+        PlayerModule,
         TablaturesModule,
         AuthenticationModule,
     ],

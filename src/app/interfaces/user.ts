@@ -3,6 +3,8 @@ export interface IUser {
   
   id: number;
   email: string;
+  apiToken: string;
+  
   username: string;
   password: string;
   

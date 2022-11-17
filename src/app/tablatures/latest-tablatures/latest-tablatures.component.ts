@@ -24,6 +24,6 @@ export class LatestTablaturesComponent implements OnInit {
                 this.errorFetcingData = true;
                 console.error( err );
             }
-        })
+        });
     }
 }

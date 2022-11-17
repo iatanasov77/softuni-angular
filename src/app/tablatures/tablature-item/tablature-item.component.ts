@@ -34,6 +34,8 @@ export class TablatureItemComponent {
   
             id: 0,
             email: "",
+            apiToken: "",
+            
             username: "",
             password: "",
             
