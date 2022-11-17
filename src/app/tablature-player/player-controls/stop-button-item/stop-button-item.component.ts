@@ -28,6 +28,7 @@ export class StopButtonItemComponent implements OnInit
             this.player.stop();
         }
  
+        window.scrollTo( 0, 0 );
         $( '#btnPlayPause' ).removeClass( 'player-control-active  -xl' );
     }
 }
