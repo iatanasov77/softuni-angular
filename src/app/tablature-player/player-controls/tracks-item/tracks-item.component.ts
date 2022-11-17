@@ -87,18 +87,18 @@ export class TracksItemComponent implements OnInit
         if ( this.player && this.player.score ) {
             if ( action == 'solo' ) {
                 if ( $( event.target ).prop( "checked" ) ) {
-                    this.soloTracks.push( this.player.score.tracks[track.index] );
+                    this.soloTracks.push( track );
                 } else {
-                    this.player.changeTrackSolo( [this.player.score.tracks[track.ndex]], false );
+                    this.player.changeTrackSolo( [track], false );
                 }
                 
                 this.player.changeTrackSolo( this.soloTracks, true );
                 this.player.changeTrackMute( this.soloTracks, false );
             } else if ( action == 'mute' ) {
                 if ( $( event.target ).prop( "checked" ) ) {
-                    this.muteTracks.push( this.player.score.tracks[track.index] );
+                    this.muteTracks.push( track );
                 } else {
-                    this.player.changeTrackMute( [this.player.score.tracks[track.index]], false );
+                    this.player.changeTrackMute( [track], false );
                 }
                 
                 this.player.changeTrackMute( this.muteTracks, true );
