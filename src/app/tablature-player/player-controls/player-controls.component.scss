@@ -167,3 +167,22 @@
     overflow-x: hidden;
 }
 
+
+div#speedSelector ul,
+div#layoutSelector {
+    margin-top: 1rem;
+}
+
+div#speedSelector ul li:hover,
+div#layoutSelector ul li:hover {
+    background-color: #eaeaea;
+}
+
+div#speedSelector ul li.active,
+div#layoutSelector ul li.active {
+    color: #00ff;
+}
+
+#trackList div.track:hover {
+    background-color: #eaeaea !important;
+}

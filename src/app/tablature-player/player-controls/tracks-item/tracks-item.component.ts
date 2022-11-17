@@ -37,6 +37,15 @@ export class TracksItemComponent implements OnInit
          */
         let firstTrack  = $( '#trackList' ).children().first();
         firstTrack.find( '.showHide' ).removeClass( 'fa-eye-slash' ).addClass( 'fa-eye' );
+        
+        /**
+         * Dont Close TrackList Dropdown on Sliding Volume Control
+         */
+        $( '#trackList' ).on( 'click', '.slider', function ( e: any )
+        {
+            e.preventDefault();
+            e.stopPropagation();
+        });
     }
     
     resetElements(): void

@@ -3,7 +3,7 @@
         <use xlink:href="#icon-layout"></use>
     </svg>
     <div class="dropdown-menu dropdown-menu-right dropright dropup dropdown-layers player-menu-right">
-        <div class="dropdown-menu-background">
+        <div id="layoutSelector" class="dropdown-menu-background">
         
             <div style="font-weight: bold; padding-left: 10px;">Layout</div>
             <ul>
@@ -16,7 +16,7 @@
             <div style="font-weight: bold; padding-left: 10px;">Stave Profile</div>
             <ul>
                 <li *ngFor="let staveprofile of staveprofiles"
-                    [ngClass]="staveprofile == selectedStaveprofile ? 'active' : ''"
+                    [ngClass]="staveprofile.staveprofile == selectedStaveprofile.staveprofile ? 'active' : ''"
 		            (click)="staveprofileHandler( staveprofile, $event )"
 		        >{{ staveprofile.text }}</li>
             </ul>
