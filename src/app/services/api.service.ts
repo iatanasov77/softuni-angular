@@ -40,16 +40,13 @@ export class ApiService
     
     }
     
-    readTablature( tabId: number )
-    {
-        return this.httpClient.get( `${backendURL}/tablatures/${tabId}/read` );
-    }
-    
     loadLatestTablatures( limit?: number )
     {
         let limitParam  = limit ? limit : '';
         
-        return this.restangular.all( "latest-tablatures", {enabled: 1, itemsPerPage: limitParam} ).getList();
+        return this.restangular.all( "latest-tablatures" ).customGET( '',
+            {enabled: 1, itemsPerPage: limitParam}
+        );
     }
     
     addToFavorites( apiToken: string, tabId: number )

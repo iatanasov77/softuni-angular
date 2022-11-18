@@ -26,7 +26,7 @@ export function RestangularConfigFactory ( RestangularProvider: any ) {
         }
         populateHref( data );
         
-        if ( 'getList' === operation ) {
+        if ( ['get', 'getLis'].includes( operation ) ) {
             const collectionResponse = data['hydra:member'];
             collectionResponse.metadata = {};
             
