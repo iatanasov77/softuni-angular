@@ -16,7 +16,7 @@ export class MyTablaturesComponent implements OnInit {
     constructor( private apiService: ApiService ) { }
     
     ngOnInit(): void {
-        this.apiService.loadLatestTablatures( 10 ).subscribe({
+        this.apiService.loadMyTablatures( 10 ).subscribe({
             next: ( response: any ) => {
                 this.tablatures = response;
             },
