@@ -8,7 +8,7 @@ declare var $: any;
 @Component({
     selector: 'app-user-login',
     templateUrl: './user-login.component.html',
-    styleUrls: ['./user-login.component.scss']
+    styleUrls: []
 })
 export class UserLoginComponent implements OnInit {
 

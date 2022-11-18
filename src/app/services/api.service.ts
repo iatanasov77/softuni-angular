@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Restangular } from 'ngx-restangular';
 
+import { LocalService } from './local.service';
 import { environment } from '../../environments/environment';
 import { ITablature } from '../interfaces/tablature';
 
@@ -17,7 +18,8 @@ export class ApiService
 {
     constructor(
         private httpClient: HttpClient,
-        private restangular: Restangular
+        private restangular: Restangular,
+        private localStore: LocalService
     ) { }
     
     login( formData: any, successCallback: any, errorCallback: any )
@@ -35,9 +37,11 @@ export class ApiService
     
     }
     
-    logout( formData: any, successCallback: any, errorCallback: any )
+    logout()
     {
+        // Need to Logout From Api Server
     
+        this.localStore.removeAuth();
     }
     
     loadLatestTablatures( limit?: number )

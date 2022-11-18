@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { IUser } from '../interfaces/user';
 import { ApiService } from '../services/api.service';
 import { environment } from '../../environments/environment';
 
@@ -21,8 +20,6 @@ export class PlayerComponent implements OnInit, OnDestroy
 {
     private sub: any;
     
-    @Input() user?: IUser;
-    
     alphatabApi: any;
     element: any;
     songDetails: any;
@@ -30,10 +27,8 @@ export class PlayerComponent implements OnInit, OnDestroy
     tabId: number = 0;
     scoreLoaded: boolean = false;
     
-    constructor(
-        private route: ActivatedRoute,
-        private apiService: ApiService
-    ) {
+    constructor( private route: ActivatedRoute )
+    {
         
     }
     

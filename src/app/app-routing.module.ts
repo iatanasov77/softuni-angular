@@ -7,6 +7,7 @@ import { LatestTablaturesComponent } from './tablatures/latest-tablatures/latest
 
 // Authentication Components
 import { UserRegisterComponent } from './authentication/user-register/user-register.component';
+import { UserLogoutComponent } from './authentication/user-logout/user-logout.component';
 
 const routes: Routes = [
     {
@@ -24,6 +25,7 @@ const routes: Routes = [
         component: PlayerComponent
     },
     
+    // Authentication Module
     {
         path: 'register',
         component: UserRegisterComponent

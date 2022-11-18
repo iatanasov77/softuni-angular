@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AlphaTabApi } from '@coderline/alphatab';
 
-import { IUser } from '../../interfaces/user';
+import { LocalService } from '../../services/local.service';
+import { IAuth } from '../../interfaces/auth';
 
 @Component({
     selector: 'player-controls',
@@ -11,16 +12,17 @@ import { IUser } from '../../interfaces/user';
 export class PlayerControlsComponent implements OnInit
 {
     @Input() tabId: number = 0;
-    @Input() user?: IUser;
     @Input() player?: AlphaTabApi;
     
-    constructor()
+    auth: IAuth | null;
+    
+    constructor( private localStore: LocalService )
     {
-        
+        this.auth   = null;
     }
     
     ngOnInit(): void
     {
-        
+        this.auth   = this.localStore.getAuth();
     }  
 }

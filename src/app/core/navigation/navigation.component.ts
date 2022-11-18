@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalService } from '../../services/local.service';
+import { IAuth } from '../../interfaces/auth';
 
 @Component({
     selector: 'ul[app-navigation]',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit
 {
-    isLoggedIn    = false;
+    auth: IAuth | null;
     
-    constructor() { }
+    constructor( private localStore: LocalService )
+    {
+        this.auth   = null;
+    }
     
-    ngOnInit(): void {
+    ngOnInit(): void
+    {
+        this.auth   = this.localStore.getAuth();
     }
 
 }
