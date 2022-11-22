@@ -12,11 +12,18 @@ import { LatestTablaturesComponent } from './tablatures/latest-tablatures/latest
 import { UserRegisterComponent } from './authentication/user-register/user-register.component';
 import { UserLogoutComponent } from './authentication/user-logout/user-logout.component';
 
+// Error Pages
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+
 const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
         redirectTo: '/latest-tablatures'
+    },
+    {
+        path: 'not-found',
+        component: PageNotFoundComponent
     },
     {
         path: 'latest-tablatures',
@@ -48,6 +55,12 @@ const routes: Routes = [
             loginRequired: false
         }
     },
+    
+    // 404 Page Not Found
+    {
+        path: '**',
+        redirectTo: '/not-found'
+    }
 ];
 
 @NgModule({
