@@ -69,31 +69,27 @@ export class ApiService
     loadMyTablatures( limit?: number )
     {
         let limitParam  = limit ? limit : '';
-        let apiToken    = this.getApiToken();
         
         return this.restangular.all( "my-tablatures" ).customGET( '',
             {itemsPerPage: limitParam},
-            {Authorization: 'Bearer ' + apiToken}
+            {Authorization: 'Bearer ' + this.getApiToken()}
         );
     }
     
     loadMyFavorites( limit?: number )
     {
         let limitParam  = limit ? limit : '';
-        let apiToken    = this.getApiToken();
         
         return this.restangular.all( "my-favorites" ).customGET( '',
             {itemsPerPage: limitParam},
-            {Authorization: 'Bearer ' + apiToken}
+            {Authorization: 'Bearer ' + this.getApiToken()}
         );
     }
     
     addToFavorites( tabId: number )
     {
-        let apiToken    = this.getApiToken();
-        
-        var body = {
-            apiToken: apiToken,
+        let body = {
+            apiToken: this.getApiToken(),
             tabId: tabId
         };
   
