@@ -22,6 +22,19 @@ export class ApiService
         private localStore: LocalService
     ) { }
     
+    /*
+     * Centralize Get Api Token To Can Check if Expired and someday to use a reffreah token
+     * ===========================================================================================
+     *      https://github.com/markitosgv/JWTRefreshTokenBundle
+     *      https://symfony.com/bundles/LexikJWTAuthenticationBundle/current/index.html#about-token-expiration
+     */
+     getApiToken(): string
+     {
+        let auth        = this.localStore.getAuth();
+        
+        return auth ? auth.apiToken : '';
+     }
+     
     login( formData: any, successCallback: any, errorCallback: any )
     {
         var credentials = {
@@ -56,8 +69,7 @@ export class ApiService
     loadMyTablatures( limit?: number )
     {
         let limitParam  = limit ? limit : '';
-        let auth        = this.localStore.getAuth();
-        let apiToken    = auth ? auth.apiToken : '';
+        let apiToken    = this.getApiToken();
         
         return this.restangular.all( "my-tablatures" ).customGET( '',
             {itemsPerPage: limitParam},
@@ -68,8 +80,7 @@ export class ApiService
     loadMyFavorites( limit?: number )
     {
         let limitParam  = limit ? limit : '';
-        let auth        = this.localStore.getAuth();
-        let apiToken    = auth ? auth.apiToken : '';
+        let apiToken    = this.getApiToken();
         
         return this.restangular.all( "my-favorites" ).customGET( '',
             {itemsPerPage: limitParam},
@@ -77,8 +88,10 @@ export class ApiService
         );
     }
     
-    addToFavorites( apiToken: string, tabId: number )
+    addToFavorites( tabId: number )
     {
+        let apiToken    = this.getApiToken();
+        
         var body = {
             apiToken: apiToken,
             tabId: tabId
