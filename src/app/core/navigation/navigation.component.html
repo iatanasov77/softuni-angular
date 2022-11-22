@@ -4,7 +4,7 @@
     </a>
 </li>
 
-<ng-template [ngIf]="auth" [ngIfElse]="loggedOut">
+<ng-template [ngIf]="isLoggedIn" [ngIfElse]="loggedOut">
     <li class="nav-item">
         <a href="/tablatures" class="nav-link">
             My Tablatures

@@ -14,11 +14,13 @@ export class PlayerControlsComponent implements OnInit
     @Input() tabId: number = 0;
     @Input() player?: AlphaTabApi;
     
-    auth: IAuth | null;
+    auth: IAuth | null; // Auth needed for user ID
+    isLoggedIn: boolean;
     
     constructor( private localStore: LocalService )
     {
-        this.auth   = null;
+        this.auth       = null;
+        this.isLoggedIn = this.localStore.isLoggedIn();
     }
     
     ngOnInit(): void
