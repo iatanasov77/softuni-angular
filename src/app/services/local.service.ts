@@ -15,9 +15,9 @@ export class LocalService
     
     constructor() { }
     
-    public createAuth( value: string )
+    public createAuth( auth: IAuth )
     {
-        localStorage.setItem( this.authKey, JSON.stringify( value ) );
+        localStorage.setItem( this.authKey, JSON.stringify( auth ) );
     }
     
     public getAuth(): IAuth | null
