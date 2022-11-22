@@ -15,6 +15,13 @@ export class LocalService
     
     constructor() { }
     
+    public isLoggedIn(): boolean
+    {
+        let auth   = this.getAuth();
+        
+        return auth && auth.apiToken ? true : false;
+    }
+    
     public createAuth( auth: IAuth )
     {
         localStorage.setItem( this.authKey, JSON.stringify( auth ) );
