@@ -29,31 +29,28 @@ export class UserRegisterComponent implements OnInit
     {
     }
     
-    onSubmit( f: NgForm )
+    onSubmit( form: NgForm ): void
     {
-        this.hasError    = f.valid as boolean;
-        this.formData    = f.value;
-        
-        if ( this.hasError ) {
+        if ( form.invalid ) {
             $( '#registrationFormError' ).removeClass( 'd-none' );
             $( '#registrationFormError' ).addClass( 'show' );
             return;
         }
         
-        this.apiService.register(
-            this.formData,
-            function( response: any ) {
-                console.log( response );
+        let formData = form.value;
+        this.apiService.register( formData ).subscribe({
+            next: ( response: any ) => {
                 
-                //userMakeLogin( response.resource );
-                //navigate( '/tablatures' );
+                
+                form.reset();
             },
-            function() {
-                console.log( 'AJAX ERROR !!!' );
+            error: ( err: any ) => {
+                
+                console.error( err );
             }
-        );
+        });
         
-        f.reset();
+        
     }
     
     onCheckboxChange( e: any )

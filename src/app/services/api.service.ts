@@ -35,19 +35,14 @@ export class ApiService
         return auth ? auth.apiToken : '';
      }
      
-    login( formData: any, successCallback: any, errorCallback: any )
+    login( credentials: any )
     {
-        var credentials = {
-            username: formData.username,
-            password: formData.password
-        };
-  
-        return this.restangular.one( 'login_check' ).post( credentials );
+        return this.restangular.all( "login_check" ).post( credentials );
     }
     
-    register( formData: any, successCallback: any, errorCallback: any )
+    register( formData: any )
     {
-    
+        return this.restangular.all( "register" ).post( formData );
     }
     
     logout()

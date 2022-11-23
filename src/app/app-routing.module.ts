@@ -7,6 +7,8 @@ import { AuthActivate } from "./guards/auth.activate";
 // Tablatures Components
 import { PlayerComponent } from './tablature-player/player.component';
 import { LatestTablaturesComponent } from './tablatures/latest-tablatures/latest-tablatures.component';
+import { MyTablaturesComponent } from './tablatures/my-tablatures/my-tablatures.component';
+import { FavoritesComponent } from './tablatures/favorites/favorites.component';
 
 // Authentication Components
 import { UserRegisterComponent } from './authentication/user-register/user-register.component';
@@ -32,6 +34,24 @@ const routes: Routes = [
         data: {
             title: 'Latest Tablatures',
             loginRequired: false
+        }
+    },
+    {
+        path: 'my-tablatures',
+        component: MyTablaturesComponent,
+        canActivate: [AuthActivate],
+        data: {
+            title: 'My Tablatures',
+            loginRequired: true
+        }
+    },
+    {
+        path: 'my-favorites',
+        component: FavoritesComponent,
+        canActivate: [AuthActivate],
+        data: {
+            title: 'My Favorites',
+            loginRequired: true
         }
     },
     

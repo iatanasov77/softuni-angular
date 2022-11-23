@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api.service';
-
-declare var $: any;
 
 @Component({
     selector: 'app-user-logout',
@@ -13,7 +11,8 @@ declare var $: any;
 export class UserLogoutComponent implements OnInit {
 
     constructor(
-        private apiService: ApiService
+        private apiService: ApiService,
+        private router: Router
     ) { }
     
     ngOnInit(): void
@@ -25,5 +24,9 @@ export class UserLogoutComponent implements OnInit {
         event.preventDefault();
         
         this.apiService.logout();
+        this.router.navigate(['/latest-tablatures'])
+                    .then(() => {
+                        window.location.reload();
+                    });
     };
 }

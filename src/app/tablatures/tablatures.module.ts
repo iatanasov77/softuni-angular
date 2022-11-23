@@ -4,6 +4,8 @@ import { RestangularModule } from 'ngx-restangular';
 import { RouterModule } from '@angular/router';
 
 import { LatestTablaturesComponent } from './latest-tablatures/latest-tablatures.component';
+import { MyTablaturesComponent } from './my-tablatures/my-tablatures.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { TablatureItemComponent } from './tablature-item/tablature-item.component';
 import { TablatureCreateComponent } from './tablature-create/tablature-create.component';
 
@@ -12,6 +14,8 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
     declarations: [
         LatestTablaturesComponent,
+        MyTablaturesComponent,
+        FavoritesComponent,
         TablatureItemComponent,
         TablatureCreateComponent
     ],
@@ -24,6 +28,8 @@ import { SharedModule } from '../shared/shared.module';
     ],
     exports: [
         LatestTablaturesComponent,
+        MyTablaturesComponent,
+        FavoritesComponent,
         TablatureCreateComponent
     ]
 })

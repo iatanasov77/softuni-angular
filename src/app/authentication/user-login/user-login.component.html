@@ -9,13 +9,14 @@
         Login
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-login-form">
-        <form class="px-4 py-3" id="formLogin" #f="ngForm" (ngSubmit)="onSubmit(f)" >
+        <form class="px-4 py-3" id="formLogin" #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm)" >
             <div class="form-group">
                 <label for="exampleDropdownFormUsername">Username</label>
                 <input type="text" name="username"
                     class="form-control"
                     id="exampleDropdownFormUsername"
                     placeholder="Username"
+                    ngModel required
                 />
             </div>
             <div class="form-group">
@@ -24,6 +25,7 @@
                     class="form-control" 
                     id="exampleDropdownFormPassword1"
                     placeholder="Password"
+                    ngModel required
                 />
             </div>
         
