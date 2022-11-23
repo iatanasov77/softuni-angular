@@ -46,7 +46,7 @@ export class UserLoginComponent implements OnInit
                     tokenExpired: data.tokenExpired
                 });
                 
-                //$( '#btnLoginForm' ).dropdown( 'toggle' );
+                $( '#btnLoginForm' ).dropdown( 'toggle' );
                 this.router.navigate(['/my-tablatures'])
                     .then(() => {
                         //window.location.reload();
