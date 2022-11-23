@@ -33,7 +33,6 @@ const routes: Routes = [
         canActivate: [AuthActivate],
         data: {
             title: 'Latest Tablatures',
-            loginRequired: false
         }
     },
     {

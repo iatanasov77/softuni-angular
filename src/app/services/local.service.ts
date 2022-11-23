@@ -25,11 +25,6 @@ export class LocalService
         this.loggedIn$  = new BehaviorSubject<boolean>( this.loggedIn );
     }
     
-    public getLoggedIn(): boolean
-    {
-        return this.loggedIn;
-    }
-    
     public isLoggedIn(): Observable<boolean>
     {
         return this.loggedIn$.asObservable();

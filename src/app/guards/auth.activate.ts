@@ -21,7 +21,7 @@ export class AuthActivate implements CanActivate
         if ( loginRequired === undefined || loggedIn === loginRequired ) {
             return true;
         }
-        
+
         return this.router.parseUrl( '/latest-tablatures' );
     }
 }
