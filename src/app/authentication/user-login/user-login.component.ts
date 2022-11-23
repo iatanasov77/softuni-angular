@@ -49,7 +49,7 @@ export class UserLoginComponent implements OnInit
                 //$( '#btnLoginForm' ).dropdown( 'toggle' );
                 this.router.navigate(['/my-tablatures'])
                     .then(() => {
-                        window.location.reload();
+                        //window.location.reload();
                     });
             },
             error: ( err: any ) => {

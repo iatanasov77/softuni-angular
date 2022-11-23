@@ -6,13 +6,13 @@
 
 <ng-template [ngIf]="isLoggedIn" [ngIfElse]="loggedOut">
     <li class="nav-item">
-        <a href="/tablatures" class="nav-link">
+        <a [routerLink]="['/my-tablatures']" class="nav-link">
             My Tablatures
         </a>
     </li>
     
     <li class="nav-item">
-        <a href="/favorites" class="nav-link">
+        <a [routerLink]="['/my-favorites']" class="nav-link">
             My Favorites
         </a>
     </li>
@@ -21,7 +21,6 @@
     
     <app-user-logout></app-user-logout>
 </ng-template>
-
 
 <ng-template #loggedOut>
     <app-user-login></app-user-login>

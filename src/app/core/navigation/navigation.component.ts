@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalService } from '../../services/local.service';
 
 @Component({
@@ -8,16 +9,17 @@ import { LocalService } from '../../services/local.service';
 })
 export class NavigationComponent implements OnInit
 {
-    isLoggedIn: boolean;
+    isLoggedIn: boolean = false;
     
-    constructor( private localStore: LocalService )
+    constructor( private localStore: LocalService, private router: Router )
     {
-        this.isLoggedIn = this.localStore.isLoggedIn();
+        this.localStore.isLoggedIn().subscribe( isLoggedIn => {
+            this.isLoggedIn = isLoggedIn;
+        });
     }
     
     ngOnInit(): void
     {
-        //this.isLoggedIn = this.localStore.isLoggedIn();
+        
     }
-
 }

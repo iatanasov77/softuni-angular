@@ -16,12 +16,12 @@ export class AuthActivate implements CanActivate
         state: RouterStateSnapshot
     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         const loginRequired = route.data['loginRequired'];
+        const loggedIn      = this.localStore.getAuth() ? true : false;
         
-        if ( loginRequired === undefined || this.localStore.isLoggedIn() === loginRequired ) {
+        if ( loginRequired === undefined || loggedIn === loginRequired ) {
             return true;
         }
         
         return this.router.parseUrl( '/latest-tablatures' );
     }
-
 }

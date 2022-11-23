@@ -17,7 +17,8 @@ export class PlayerControlsComponent implements OnInit
     
     constructor( private localStore: LocalService )
     {
-        this.isLoggedIn = this.localStore.isLoggedIn();
+        //this.isLoggedIn = this.localStore.isLoggedIn();
+        this.isLoggedIn = false
     }
     
     ngOnInit(): void

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 import { IAuth } from '../interfaces/auth';
 
 /**
@@ -13,18 +15,32 @@ export class LocalService
 {
     authKey = "auth";
     
-    constructor() { }
+    loggedIn: boolean;
+    loggedIn$: BehaviorSubject<boolean>;
     
-    public isLoggedIn(): boolean
+    constructor()
     {
-        let auth   = this.getAuth();
-        
-        return auth && auth.apiToken ? true : false;
+        let auth        = this.getAuth();
+        this.loggedIn   = auth && auth.apiToken ? true : false;
+        this.loggedIn$  = new BehaviorSubject<boolean>( this.loggedIn );
+    }
+    
+    public getLoggedIn(): boolean
+    {
+        return this.loggedIn;
+    }
+    
+    public isLoggedIn(): Observable<boolean>
+    {
+        return this.loggedIn$.asObservable();
     }
     
     public createAuth( auth: IAuth )
     {
         localStorage.setItem( this.authKey, JSON.stringify( auth ) );
+        
+        this.loggedIn   = auth && auth.apiToken ? true : false;
+        this.loggedIn$.next( this.loggedIn );
     }
     
     public getAuth(): IAuth | null
@@ -36,5 +52,8 @@ export class LocalService
     public removeAuth()
     {
         localStorage.removeItem( this.authKey );
+        
+        this.loggedIn   = false;
+        this.loggedIn$.next( this.loggedIn );
     }
 }
