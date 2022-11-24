@@ -30,6 +30,18 @@ export class LocalService
         return this.loggedIn$.asObservable();
     }
     
+    public checkTokenExpired( auth: IAuth ): boolean
+    {
+        //alert( "Token Expired: " + auth.tokenExpired * 1000 + "\nCurrrent: " + Date.now() );
+        if ( ( auth.tokenExpired * 1000 ) < Date.now() ) {
+            this.removeAuth();
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
     public createAuth( auth: IAuth )
     {
         localStorage.setItem( this.authKey, JSON.stringify( auth ) );
@@ -40,8 +52,13 @@ export class LocalService
     
     public getAuth(): IAuth | null
     {   let authData    = localStorage.getItem( this.authKey );
-    
-        return authData ? JSON.parse( authData ) : null;
+        
+        let auth        = authData ? JSON.parse( authData ) : null;
+        if ( auth && this.checkTokenExpired( auth ) ) {
+            auth    = null;
+        }
+        
+        return auth; 
     }
     
     public removeAuth()
