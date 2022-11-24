@@ -11,7 +11,7 @@
 	
 	<div class="dropdown-menu dropdown-menu-right dropdown-tablature-form">
 	   
-        <form class="px-4 py-3" onSubmit={onSubmit} >
+        <form class="px-4 py-3" [formGroup]="tablatureForm" (ngSubmit)="handleSubmit()" >
 	            
             <div class="form-check mb-3">
                 <input
@@ -63,7 +63,7 @@
                         id="tablature_form_tablature"
                         name="tablature_file"
                         class="custom-file-input"
-                        onChange={onSelectTablatureFile}
+                        (change)="onSelectTablatureFile($event)"
                     />
                     <label
                         id="tablature_form_tablature_label" 

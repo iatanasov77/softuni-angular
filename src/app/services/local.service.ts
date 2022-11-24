@@ -51,7 +51,8 @@ export class LocalService
     }
     
     public getAuth(): IAuth | null
-    {   let authData    = localStorage.getItem( this.authKey );
+    {
+        let authData    = localStorage.getItem( this.authKey );
         
         let auth        = authData ? JSON.parse( authData ) : null;
         if ( auth && this.checkTokenExpired( auth ) ) {
@@ -66,6 +67,10 @@ export class LocalService
         localStorage.removeItem( this.authKey );
         
         this.loggedIn   = false;
+        if ( ! this.loggedIn$ ) {
+            this.loggedIn$  = new BehaviorSubject<boolean>( this.loggedIn );
+        }
+        
         this.loggedIn$.next( this.loggedIn );
     }
 }

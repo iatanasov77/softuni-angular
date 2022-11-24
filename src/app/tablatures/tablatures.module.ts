@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RestangularModule } from 'ngx-restangular';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LatestTablaturesComponent } from './latest-tablatures/latest-tablatures.component';
 import { MyTablaturesComponent } from './my-tablatures/my-tablatures.component';
@@ -23,6 +24,8 @@ import { SharedModule } from '../shared/shared.module';
         CommonModule,
         RestangularModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         
         SharedModule,
     ],
