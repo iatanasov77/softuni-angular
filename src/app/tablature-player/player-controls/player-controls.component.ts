@@ -13,12 +13,13 @@ export class PlayerControlsComponent implements OnInit
     @Input() tabId: number = 0;
     @Input() player?: AlphaTabApi;
     
-    isLoggedIn: boolean;
+    isLoggedIn: boolean     = false;
     
     constructor( private localStore: LocalService )
     {
-        //this.isLoggedIn = this.localStore.isLoggedIn();
-        this.isLoggedIn = false
+        this.localStore.isLoggedIn().subscribe( isLoggedIn => {
+            this.isLoggedIn = isLoggedIn;
+        });
     }
     
     ngOnInit(): void

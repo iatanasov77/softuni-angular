@@ -84,11 +84,14 @@ export class ApiService
     addToFavorites( tabId: number )
     {
         let body = {
-            apiToken: this.getApiToken(),
-            tabId: tabId
+            tablatureId: tabId
         };
   
-        return this.restangular.one( 'add-to-favorites' ).post( body );
+        return this.restangular.all( "add-to-favorites" ).customPOST(
+            body,
+            '',
+            {},
+            {Authorization: 'Bearer ' + this.getApiToken()}
+        );
     }
-
 }

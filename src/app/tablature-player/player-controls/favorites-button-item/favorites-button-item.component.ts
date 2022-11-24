@@ -28,7 +28,7 @@ export class FavoritesButtonItemComponent implements OnInit
         this.apiService.addToFavorites( this.tabId ).subscribe({
             next: ( response: any ) => {
                 //console.log( response );
-                if( response.status == 'success' ) {
+                if( response ) {
                     $( '#ApplicationAlerts' ).css( "left", "120px" );
                     $( '#ApplicationAlerts' ).css( "width", "90%" );
                     
