@@ -10,15 +10,22 @@
 </td>
 
 <td>
-    <a [routerLink]="['/tablatures/', tablature?.id, 'play']" class="btn btn-primary" title="Play Tablature" >
+    <a class="btn btn-primary" title="Play Tablature"
+        [routerLink]="['/tablatures/', tablature?.id, 'play']"
+    >
         <i class="fas fa-play"></i>
     </a>
     
     <!-- Only on Tablatures That The Current User is Owner -->
-    <a *ngIf="tablature?.createdBy == user?.id" href="/tablatures/{{ tablature?.id }}/update" class="btn btn-primary ml-2" title="Edit Tablature" >
+    <a *ngIf="tablature?.createdBy == user?.id"  class="btn btn-primary ml-2" title="Edit Tablature"
+        [routerLink]="['/tablatures/', tablature?.id, 'update']"
+    >
         <i class="fas fa-edit"></i>
     </a>
-    <a *ngIf="tablature?.createdBy == user?.id" href="/tablatures/{{ tablature?.id }}/delete" class="btn btn-danger ml-2" title="Delete Tablature" >
+    <a *ngIf="tablature?.createdBy == user?.id"  class="btn btn-danger ml-2" title="Delete Tablature"
+        href="javascript:void(0);"
+        (click)="onClickDelete($event)"
+    >
         <i class="fas fa-window-close"></i>
     </a>
 </td>

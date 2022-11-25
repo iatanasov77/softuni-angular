@@ -45,7 +45,6 @@ export class PlayerComponent implements OnInit, OnDestroy
             
             this.alphatabInit();
         });
-        
     }
     
     ngOnDestroy()

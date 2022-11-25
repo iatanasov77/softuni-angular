@@ -1,0 +1,72 @@
+<div class="tablatures-container" style="margin-top: 110px">
+    <div class="card card-registration-form">
+        <div class="card-header">
+            <h3 class="mb-1">Tablature Update</h3>
+        </div>
+        <div class="card-body">
+            <form class="px-4 py-3" id="formTtablatureUpdate" [formGroup]="tablatureForm" (ngSubmit)="handleSubmit()" >
+                
+                <div class="form-check mb-3">
+                    <input
+                        type="checkbox"
+                        id="tablature_form_enabled"
+                        name="published"
+                        class="form-check-input"
+                        
+                        [checked]="tablature?.enabled"
+                        formControlName="published"
+                        (change)="onCheckboxChange($event)"
+                    />
+                    <label class="form-check-label" for="tablature_form_enabled">To Be Public</label>
+                </div>
+            
+                <div class="form-group">
+                    <label for="tablature_form_artist" class="required">Artist</label>
+                    <input
+                        type="text"
+                        id="tablature_form_artist"
+                        class="form-control"
+                        
+                        [value]="tablature?.artist"
+                        formControlName="artist"
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="tablature_form_song" class="required">Song</label>
+                    <input
+                        type="text"
+                        id="tablature_form_song"
+                        class="form-control"
+                        
+                        [value]="tablature?.song"
+                        formControlName="song"
+                    />
+                </div>
+                
+                <div class="form-group">
+                    <label for="tablature_form_tablature" class="required">Tablature</label>
+                    <div class="custom-file">
+                        <input
+                            type="file"
+                            accept=".gp,.gp3,.gp4,.gp5,audio/x-guitar-pro"
+                            id="tablature_form_tablature"
+                            class="custom-file-input"
+                            
+                            formControlName="tablature"
+                            (change)="onSelectTablatureFile($event)"
+                        />
+                        <label
+                            id="tablature_form_tablature_label" 
+                            class="custom-file-label"
+                            for="tablature_form_tablature"
+                        >{{ tablatureFileOriginalName }}</label>
+                    </div>
+                </div>
+                
+                <div class="row">&nbsp;</div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>

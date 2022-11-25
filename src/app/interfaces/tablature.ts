@@ -7,6 +7,8 @@ export interface ITablature
     song: string;
     enabled: boolean;
     
+    tablatureFile: any;
+    
     user: any;
     createdBy: number;
     updatedBy: number;

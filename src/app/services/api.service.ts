@@ -108,4 +108,38 @@ export class ApiService
                         }
                     );
     }
+    
+    loadTablature( tabId: number )
+    {
+        return this.restangular.one( 'tablatures/' + tabId )
+                    .customGET( 
+                        undefined,
+                        undefined,
+                        {"Authorization": 'Bearer ' + this.getApiToken()}
+                    );
+    }
+    
+    updateTablature( tabId: number, formData: FormData )
+    {
+        return this.restangular.one( 'tablatures/' + tabId )
+                    .customPOST(
+                        formData,
+                        undefined,
+                        undefined,
+                        {
+                            "Content-Type": undefined,
+                            "Authorization": 'Bearer ' + this.getApiToken()
+                        }
+                    );
+    }
+    
+    deleteTablature( tabId: number )
+    {
+        return this.restangular.one( 'tablatures/' + tabId )
+                    .customDELETE(
+                        undefined,
+                        undefined,
+                        {"Authorization": 'Bearer ' + this.getApiToken()}
+                    );
+    }
 }

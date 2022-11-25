@@ -9,6 +9,7 @@ import { PlayerComponent } from './tablature-player/player.component';
 import { LatestTablaturesComponent } from './tablatures/latest-tablatures/latest-tablatures.component';
 import { MyTablaturesComponent } from './tablatures/my-tablatures/my-tablatures.component';
 import { FavoritesComponent } from './tablatures/favorites/favorites.component';
+import { TablatureEditComponent } from './tablatures/tablature-edit/tablature-edit.component';
 
 // Authentication Components
 import { UserRegisterComponent } from './authentication/user-register/user-register.component';
@@ -61,6 +62,16 @@ const routes: Routes = [
         data: {
             title: 'Tablature Player',
             //loginRequired: false
+        }
+    },
+    
+    {
+        path: 'tablatures/:id/update',
+        component: TablatureEditComponent,
+        canActivate: [AuthActivate],
+        data: {
+            title: 'Tablature Edit',
+            loginRequired: true
         }
     },
     

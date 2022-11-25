@@ -9,6 +9,7 @@ import { MyTablaturesComponent } from './my-tablatures/my-tablatures.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { TablatureItemComponent } from './tablature-item/tablature-item.component';
 import { TablatureCreateComponent } from './tablature-create/tablature-create.component';
+import { TablatureEditComponent } from './tablature-edit/tablature-edit.component';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
         MyTablaturesComponent,
         FavoritesComponent,
         TablatureItemComponent,
-        TablatureCreateComponent
+        TablatureCreateComponent,
+        TablatureEditComponent
     ],
     imports: [
         CommonModule,
@@ -33,7 +35,8 @@ import { SharedModule } from '../shared/shared.module';
         LatestTablaturesComponent,
         MyTablaturesComponent,
         FavoritesComponent,
-        TablatureCreateComponent
+        TablatureCreateComponent,
+        TablatureEditComponent
     ]
 })
 export class TablaturesModule { }

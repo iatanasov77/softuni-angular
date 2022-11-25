@@ -22,11 +22,11 @@
                     formControlName="published"
                     (change)="onCheckboxChange($event)"
                 />
-                <label class="form-check-label" htmlFor="tablature_form_enabled">To Be Public</label>
+                <label class="form-check-label" for="tablature_form_enabled">To Be Public</label>
             </div>
             
             <div class="form-group">
-                <label htmlFor="tablature_form_artist" class="required">Artist</label>
+                <label for="tablature_form_artist" class="required">Artist</label>
                 <input
                     type="text"
                     id="tablature_form_artist"
@@ -38,7 +38,7 @@
             </div>
             
             <div class="form-group">
-                <label htmlFor="tablature_form_song" class="required">Song</label>
+                <label for="tablature_form_song" class="required">Song</label>
                 <input
                     type="text"
                     id="tablature_form_song"
@@ -50,7 +50,7 @@
             </div>
             
             <div class="form-group">
-                <label htmlFor="tablature_form_tablature" class="required">Tablature</label>
+                <label for="tablature_form_tablature" class="required">Tablature</label>
                 <div class="custom-file">
                     <input
                         type="file"
@@ -64,7 +64,7 @@
                     <label
                         id="tablature_form_tablature_label" 
                         class="custom-file-label"
-                        htmlFor="tablature_form_tablature"
+                        for="tablature_form_tablature"
                     >Choose a file</label>
                 </div>
                 <div *ngIf="tablatureForm.get('tablature')?.touched" class="alert alert-danger">

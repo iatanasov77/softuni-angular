@@ -24,6 +24,6 @@ export class FavoritesComponent implements OnInit {
                 this.errorFetcingData = true;
                 console.error( err );
             }
-        })
+        });
     }
 }

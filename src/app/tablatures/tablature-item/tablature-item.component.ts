@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router  } from '@angular/router';
 
+import { ApiService } from '../../services/api.service';
 import { ITablature } from '../../interfaces/tablature';
 import { IUser } from '../../interfaces/user';
 
@@ -15,10 +16,30 @@ export class TablatureItemComponent {
     @Input() user?: IUser;
     
     currentRoute: string;
+    errorFetcingData = false;
     
-    constructor( private router: Router )
+    constructor( private apiService: ApiService, private router: Router )
     {
         //console.log( router.url );
         this.currentRoute   = router.url
+    }
+    
+    onClickDelete( e: any )
+    {
+        if ( this.tablature ) {
+            this.apiService.deleteTablature( this.tablature.id ).subscribe({
+                next: ( response: any ) => {
+                    //console.log( response );
+                    this.router.navigate(['/my-tablatures'])
+                        .then(() => {
+                            window.location.reload();
+                        });
+                },
+                error: ( err: any ) => {
+                    this.errorFetcingData = true;
+                    console.error( err );
+                }
+            });
+        }
     }
 }
