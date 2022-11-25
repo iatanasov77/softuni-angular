@@ -23,7 +23,8 @@ export class TablatureCreateComponent implements OnInit {
         artist: ['', [Validators.required]],
         song: ['', [Validators.required]],
         
-        tablature_file: ['', [Validators.required]],
+        tablature: ['', [Validators.required]],
+        tablatureSource: ['', [Validators.required]],
     });
     
     constructor( private apiService: ApiService, private router: Router, private fb: FormBuilder ) { }
@@ -31,10 +32,27 @@ export class TablatureCreateComponent implements OnInit {
     ngOnInit(): void {
         
     }
+  
+    onCheckboxChange( e: any )
+    {
+        this.tablatureForm.patchValue({
+            published: e.target.checked
+        });
+    }
     
     onSelectTablatureFile( e: any ): boolean
     {
-        let file    = e.target.files[0];
+        let file;
+        
+        if ( e.target.files.length > 0 ) {
+            file = e.target.files[0];
+            
+            this.tablatureForm.patchValue({
+                tablatureSource: file
+            });
+        } else {
+            return false;
+        }
         
         if ( file.size > 1000000 ) { // Size > 1 MB ( Gore-Dolo :) )
             $( '#ErrorApplicationAlertsBody' ).html( 'Too Big Tablature File Size !!! ' );
@@ -50,12 +68,27 @@ export class TablatureCreateComponent implements OnInit {
     
     handleSubmit(): void
     {
-    /*
-        let formData = new FormData( e.target );
-        formData.append( 'tablature_file', selectedFile );
-        formData.append( 'published', tablature.published );
+        let formData = new FormData();
         
-        addTablatureHandler( formData );
-    */
+        let published   = this.tablatureForm.get( 'published' )?.value;
+        //alert( published );
+        formData.append( 'published', published );
+        formData.append( 'artist', this.tablatureForm.get( 'artist' )?.value );
+        formData.append( 'song', this.tablatureForm.get( 'song' )?.value );
+        formData.append( 'tablature', this.tablatureForm.get( 'tablatureSource' )?.value );
+        
+        this.apiService.createTablature( formData ).subscribe({
+            next: ( response: any ) => {
+                //console.log( response );
+                this.router.navigate(['/my-tablatures'])
+                    .then(() => {
+                        //window.location.reload();
+                    });
+            },
+            error: ( err: any ) => {
+                this.errorFetcingData = true;
+                console.error( err );
+            }
+        });
     };
 }

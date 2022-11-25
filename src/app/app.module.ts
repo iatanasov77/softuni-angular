@@ -26,21 +26,25 @@ export function RestangularConfigFactory ( RestangularProvider: any ) {
         }
         populateHref( data );
         
-        if ( ['get', 'getLis'].includes( operation ) ) {
+        if ( ['get', 'getList'].includes( operation ) ) {
             const collectionResponse = data['hydra:member'];
-            collectionResponse.metadata = {};
+            //console.log( data );
             
-            for ( const key in data ) {
-                if ( 'hydra:member' !== key && data.hasOwnProperty( key ) ) {
-                    collectionResponse.metadata[key] = data[key];
+            if ( collectionResponse ) {
+                collectionResponse.metadata = {};
+                
+                for ( const key in data ) {
+                    if ( 'hydra:member' !== key && data.hasOwnProperty( key ) ) {
+                        collectionResponse.metadata[key] = data[key];
+                    }
                 }
+                
+                for ( const element of collectionResponse ) {
+                    populateHref( element );
+                }
+                
+                return collectionResponse;
             }
-            
-            for ( const element of collectionResponse ) {
-                populateHref( element );
-            }
-            
-            return collectionResponse;
         }
         
         return data;

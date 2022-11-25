@@ -17,11 +17,10 @@
                 <input
                     type="checkbox"
                     id="tablature_form_enabled"
-                    name="published"
                     class="form-check-input"
                     
-                    onChange={onChange}
-                    checked={tablature.published}
+                    formControlName="published"
+                    (change)="onCheckboxChange($event)"
                 />
                 <label class="form-check-label" htmlFor="tablature_form_enabled">To Be Public</label>
             </div>
@@ -31,12 +30,10 @@
                 <input
                     type="text"
                     id="tablature_form_artist"
-                    name="artist"
                     required="required"
                     class="form-control"
                     
-                    onChange={onChange}
-                    value={tablature.artist}
+                    formControlName="artist"
                 />
             </div>
             
@@ -45,12 +42,10 @@
                 <input
                     type="text"
                     id="tablature_form_song"
-                    name="song"
                     required="required"
                     class="form-control"
                     
-                    onChange={onChange}
-                    value={tablature.song}
+                    formControlName="song"
                 />
             </div>
             
@@ -61,9 +56,10 @@
                         type="file"
                         accept=".gp,.gp3,.gp4,.gp5,audio/x-guitar-pro"
                         id="tablature_form_tablature"
-                        name="tablature_file"
                         class="custom-file-input"
+                        formControlName="tablature"
                         (change)="onSelectTablatureFile($event)"
+                        
                     />
                     <label
                         id="tablature_form_tablature_label" 
@@ -71,6 +67,10 @@
                         htmlFor="tablature_form_tablature"
                     >Choose a file</label>
                 </div>
+                <div *ngIf="tablatureForm.get('tablature')?.touched" class="alert alert-danger">
+		            <div *ngIf="tablatureForm.get('tablature')?.errors?.['required']" class="invalid-feedback">Tablature File is required</div>
+		        </div>
+		        
             </div>
             
             <div class="form-group mt-5">

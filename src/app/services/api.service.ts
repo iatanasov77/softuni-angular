@@ -94,4 +94,18 @@ export class ApiService
             {Authorization: 'Bearer ' + this.getApiToken()}
         );
     }
+    
+    createTablature( formData: FormData )
+    {
+        return this.restangular.one( 'tablatures/new' )
+                    .customPOST(
+                        formData, 
+                        undefined,
+                        undefined,
+                        {
+                            "Content-Type": undefined,
+                            "Authorization": 'Bearer ' + this.getApiToken()
+                        }
+                    );
+    }
 }
