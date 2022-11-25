@@ -8,5 +8,7 @@ export interface IUser
     username: string;
     password: string;
     
+    info: any
+    
     __v: number;
 }

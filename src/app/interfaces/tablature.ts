@@ -7,8 +7,7 @@ export interface ITablature
     song: string;
     enabled: boolean;
     
-    //userId: IUser;
-    owner: string
+    user: any;
     createdBy: number;
     updatedBy: number;
     createdAt: string;

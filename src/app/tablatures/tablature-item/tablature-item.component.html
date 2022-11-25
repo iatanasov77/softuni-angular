@@ -1,16 +1,24 @@
-<td>{{ tablature.artist }}</td>
-<td>{{ tablature.song }}</td>
-<td>{{ tablature.owner }}</td>
+<td>{{ tablature?.artist }}</td>
+<td>{{ tablature?.song }}</td>
+
+<td *ngIf="currentRoute != '/my-tablatures'">
+    {{ tablature?.user?.info?.firstName }} {{ tablature?.user.info.lastName }}
+</td>
+<td *ngIf="currentRoute == '/my-tablatures'">
+    <i *ngIf="tablature?.enabled" class="fas fa-check" style="color: #82c91e;"></i>
+    <i *ngIf="! tablature?.enabled" class="fas fa-times" style="color: #ff1e1e;"></i>
+</td>
+
 <td>
-    <a [routerLink]="['/tablatures/', tablature.id, 'play']" class="btn btn-primary" >
-        Play
+    <a [routerLink]="['/tablatures/', tablature?.id, 'play']" class="btn btn-primary" title="Play Tablature" >
+        <i class="fas fa-play"></i>
     </a>
     
     <!-- Only on Tablatures That The Current User is Owner -->
-    <a *ngIf="tablature.createdBy == user.id" href="/tablatures/{{ tablature.id }}/update" class="btn btn-primary ml-4" >
-        Edit
+    <a *ngIf="tablature?.createdBy == user?.id" href="/tablatures/{{ tablature?.id }}/update" class="btn btn-primary ml-2" title="Edit Tablature" >
+        <i class="fas fa-edit"></i>
     </a>
-    <a *ngIf="tablature.createdBy == user.id" href="/tablatures/{{ tablature.id }}/delete" class="btn btn-primary ml-4" >
-        Delete
+    <a *ngIf="tablature?.createdBy == user?.id" href="/tablatures/{{ tablature?.id }}/delete" class="btn btn-danger ml-2" title="Delete Tablature" >
+        <i class="fas fa-window-close"></i>
     </a>
 </td>
