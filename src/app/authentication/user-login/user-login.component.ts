@@ -39,6 +39,9 @@ export class UserLoginComponent implements OnInit
                 
                 this.localStore.createAuth({
                     id: data.userId,
+                    email: data.email,
+                    username: data.username,
+                    
                     fullName: data.userFullName,
                     
                     apiToken: data.token,

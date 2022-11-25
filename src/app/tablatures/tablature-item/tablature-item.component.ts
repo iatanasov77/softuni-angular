@@ -1,19 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router  } from '@angular/router';
 
 import { ApiService } from '../../services/api.service';
 import { ITablature } from '../../interfaces/tablature';
-import { IUser } from '../../interfaces/user';
+import { IAuth } from '../../interfaces/auth';
 
 @Component({
     selector: 'tr[app-tablature-item]',
     templateUrl: './tablature-item.component.html',
     styleUrls: ['./tablature-item.component.scss']
 })
-export class TablatureItemComponent {
+export class TablatureItemComponent implements OnInit
+{
 
     @Input() tablature?: ITablature;
-    @Input() user?: IUser;
+    @Input() auth?: IAuth | null;
     
     currentRoute: string;
     errorFetcingData = false;
@@ -22,6 +23,12 @@ export class TablatureItemComponent {
     {
         //console.log( router.url );
         this.currentRoute   = router.url
+    }
+    
+    ngOnInit(): void
+    {
+        //alert( this?.tablature?.createdBy );
+        //alert( this?.auth?.username );
     }
     
     onClickDelete( e: any )

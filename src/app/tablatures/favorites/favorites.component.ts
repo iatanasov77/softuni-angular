@@ -8,14 +8,16 @@ import { ITablature } from '../../interfaces/tablature';
     templateUrl: './favorites.component.html',
     styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent implements OnInit
+{
 
     tablatures: ITablature[] | null = null;
     errorFetcingData = false;
     
     constructor( private apiService: ApiService ) { }
     
-    ngOnInit(): void {
+    ngOnInit(): void
+    {
         this.apiService.loadMyFavorites( 10 ).subscribe({
             next: ( response: any ) => {
                 this.tablatures = response;

@@ -50,7 +50,7 @@ export class LocalService
         this.loggedIn$.next( this.loggedIn );
     }
     
-    public getAuth(): IAuth | null
+    public getAuth(): IAuth | null | undefined
     {
         let authData    = localStorage.getItem( this.authKey );
         
