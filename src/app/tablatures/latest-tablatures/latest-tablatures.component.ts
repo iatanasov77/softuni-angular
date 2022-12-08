@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import { map, merge } from 'rxjs';
 import { loadLatestTablatures, loadLatestTablaturesFailure, loadLatestTablaturesSuccess } from '../../+store/actions';
-import { getUrl, getLatestTablatures } from '../../+store/selectors';
+import { getLatestTablatures } from '../../+store/selectors';
 
 @Component({
     selector: 'app-latest-tablatures',

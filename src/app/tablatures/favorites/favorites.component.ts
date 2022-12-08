@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import { map, merge } from 'rxjs';
 import { loadMyFavorites, loadMyFavoritesFailure, loadMyFavoritesSuccess } from '../../+store/actions';
-import { getUrl, getMyFavorites } from '../../+store/selectors';
+import { getMyFavorites } from '../../+store/selectors';
 
 @Component({
     selector: 'app-favorites',

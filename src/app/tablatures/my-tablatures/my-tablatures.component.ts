@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
 import { map, merge } from 'rxjs';
 import { loadMyTablatures, loadMyTablaturesFailure, loadMyTablaturesSuccess } from '../../+store/actions';
-import { getUrl, getMyTablatures } from '../../+store/selectors';
+import { getMyTablatures } from '../../+store/selectors';
 
 @Component({
     selector: 'app-my-tablatures',

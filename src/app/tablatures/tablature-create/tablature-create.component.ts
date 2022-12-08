@@ -12,9 +12,8 @@ declare var $: any;
   templateUrl: './tablature-create.component.html',
   styleUrls: ['./tablature-create.component.scss']
 })
-export class TablatureCreateComponent implements OnInit {
-
-    tablatures: ITablature[] | null = null;
+export class TablatureCreateComponent implements OnInit
+{
     errorFetcingData = false;
     
     tablatureForm    = this.fb.group({
@@ -24,7 +23,7 @@ export class TablatureCreateComponent implements OnInit {
         song: ['', [Validators.required]],
         
         tablature: ['', [Validators.required]],
-        tablatureSource: ['', [Validators.required]],
+        tablatureSource: [new Blob(), [Validators.required]],
     });
     
     constructor( private apiService: ApiService, private router: Router, private fb: FormBuilder ) { }
@@ -71,11 +70,12 @@ export class TablatureCreateComponent implements OnInit {
         let formData    = new FormData();
         
         let published   = this.tablatureForm.get( 'published' )?.value;
-        //alert( published );
+        let tabFile     = this.tablatureForm.get( 'tablatureSource' )?.value;
+        
         formData.append( 'published', String( published ) );
         formData.append( 'artist', String( this.tablatureForm.get( 'artist' )?.value ) );
         formData.append( 'song', String( this.tablatureForm.get( 'song' )?.value ) );
-        formData.append( 'tablature', String( this.tablatureForm.get( 'tablatureSource' )?.value ) );
+        formData.append( 'tablature', tabFile as Blob );
         
         this.apiService.createTablature( formData ).subscribe({
             next: ( response: any ) => {

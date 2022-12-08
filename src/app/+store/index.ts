@@ -1,6 +1,12 @@
 import { ActionReducerMap, createReducer, on } from "@ngrx/store";
 import { routerReducer } from '@ngrx/router-store';
-import { loadLatestTablaturesSuccess, loadMyTablaturesSuccess, loadMyFavoritesSuccess } from "./actions";
+import {
+    loadLatestTablaturesSuccess,
+    loadMyTablaturesSuccess,
+    loadMyFavoritesSuccess,
+    loadTablatureSuccess
+} from "./actions";
+
 import { ITablature } from '../interfaces/tablature';
 
 export interface IMainState
@@ -8,6 +14,7 @@ export interface IMainState
     latestTablatures:   null | ITablature[];
     myTablatures:       null | ITablature[];
     myFavorites:        null | ITablature[];
+    tablature:          null | ITablature;
 }
 
 interface IAppState
@@ -19,7 +26,8 @@ interface IAppState
 const mainInitialState: IMainState = {
     latestTablatures:   null,
     myTablatures:       null,
-    myFavorites:        null
+    myFavorites:        null,
+    tablature:          null
 };
 
 const mainReducer = createReducer<IMainState>(
@@ -35,6 +43,10 @@ const mainReducer = createReducer<IMainState>(
     
     on( loadMyFavoritesSuccess, ( state, { myFavorites } ) => {
       return { ...state, myFavorites };
+    }),
+    
+    on( loadTablatureSuccess, ( state, { tablature } ) => {
+      return { ...state, tablature };
     })
 );
 

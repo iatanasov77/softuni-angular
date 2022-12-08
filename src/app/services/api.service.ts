@@ -111,6 +111,10 @@ export class ApiService
     
     loadTablature( tabId: number )
     {
+        if ( isNaN( tabId ) ) {
+            return null;
+        }
+        
         return this.restangular.one( 'tablatures/' + tabId )
                     .customGET( 
                         undefined,

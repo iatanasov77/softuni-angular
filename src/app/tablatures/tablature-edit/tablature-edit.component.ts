@@ -2,10 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
 
+import { Store } from '@ngrx/store';
+import { Actions, ofType } from '@ngrx/effects';
+import { map, merge } from 'rxjs';
+import { loadTablature, loadTablatureFailure, loadTablatureSuccess } from '../../+store/actions';
+import { getRouteParams, getTablature } from '../../+store/selectors';
 import { ApiService } from '../../services/api.service';
+
 import { ITablature } from '../../interfaces/tablature';
 
 declare var $: any;
+declare var file: File;
 
 @Component({
     selector: 'app-tablature-edit',
@@ -14,10 +21,26 @@ declare var $: any;
 })
 export class TablatureEditComponent implements OnInit
 {
-    private sub: any;
+    routeParams$ = this.store.select( getRouteParams );
+    tablature$ = this.store.select( getTablature );
     
-    tablature?: ITablature;
+    tablature: ITablature | null = null;
     errorFetcingData = false;
+    
+    isFetchingTablature$ = merge(
+        this.actions$.pipe(
+            ofType( loadTablature ),
+            map( () => true )
+        ),
+        this.actions$.pipe(
+            ofType( loadTablatureSuccess ),
+            map( () => false )
+        ),
+        this.actions$.pipe(
+            ofType( loadTablatureFailure ),
+            map( () => false )
+        )
+    );
     
     tablatureFileOriginalName: any;
     tablatureForm    = this.fb.group({
@@ -27,37 +50,35 @@ export class TablatureEditComponent implements OnInit
         song: ['', [Validators.required]],
         
         tablature: ['', [Validators.required]],
-        tablatureSource: ['', [Validators.required]],
+        tablatureSource: [null, [Validators.required]],
     });
     
     constructor(
-        private apiService: ApiService,
-        private route: ActivatedRoute,
+        private store: Store,
+        private actions$: Actions,
         private router: Router,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private apiService: ApiService
     ) { }
 
-    ngOnInit(): void {
-        this.sub = this.route.params.subscribe(params => {
-            let tabId    = +params['id']; // (+) converts string 'id' to a number
+    ngOnInit(): void
+    {
+        this.routeParams$.subscribe( params => {
+            this.store.dispatch( loadTablature( { tabId: +params['id'] } ) ); // (+) converts string 'id' to a number
             
-            this.apiService.loadTablature( tabId ).subscribe({
-                next: ( response: any ) => {
-                    this.tablature = response;
-                    
-                    this.tablatureFileOriginalName  = response?.tablatureFile?.originalName;
+            this.store.subscribe( ( state: any ) => {
+                this.tablature = state.main.tablature;
+                
+                if ( this.tablature ) {
+                    this.tablatureFileOriginalName  = this.tablature.tablatureFile?.originalName;
                     this.tablatureForm.setValue({
-                        published: response.enabled,
-                        artist: response.artist,
-                        song: response.song,
+                        published: this.tablature.enabled,
+                        artist: this.tablature.artist,
+                        song: this.tablature.song,
                         
                         tablature: '',
-                        tablatureSource: ''
+                        tablatureSource: null
                     });
-                },
-                error: ( err: any ) => {
-                    this.errorFetcingData = true;
-                    console.error( err );
                 }
             });
         });
@@ -103,12 +124,13 @@ export class TablatureEditComponent implements OnInit
         let formData = new FormData();
         
         let published   = this.tablatureForm.get( 'published' )?.value;
-        //alert( published );
+        let tabFile     = this.tablatureForm.get( 'tablatureSource' )?.value;
+        
         formData.append( '_method', 'PUT' );
         formData.append( 'published', String( published ) );
         formData.append( 'artist', String( this.tablatureForm.get( 'artist' )?.value ) );
         formData.append( 'song', String( this.tablatureForm.get( 'song' )?.value ) );
-        formData.append( 'tablature', String( this.tablatureForm.get( 'tablatureSource' )?.value ) );
+        formData.append( 'tablature', tabFile as any );
         
         if ( this.tablature && this.tablature.id ) {
             this.apiService.updateTablature( this.tablature.id, formData ).subscribe({

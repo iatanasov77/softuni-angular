@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ApiService } from '../services/api.service';
 import { environment } from '../../environments/environment';
+
+import { Store } from '@ngrx/store';
+import { getRouteParams } from '../+store/selectors';
 
 declare var $: any;
 declare global {
@@ -18,7 +19,7 @@ declare global {
 })
 export class PlayerComponent implements OnInit, OnDestroy
 {
-    private sub: any;
+    routeParams$ = this.store.select( getRouteParams );
     
     alphatabApi: any;
     element: any;
@@ -27,7 +28,7 @@ export class PlayerComponent implements OnInit, OnDestroy
     tabId: number = 0;
     scoreLoaded: boolean = false;
     
-    constructor( private route: ActivatedRoute )
+    constructor( private store: Store )
     {
         
     }
@@ -37,7 +38,7 @@ export class PlayerComponent implements OnInit, OnDestroy
         // Change <body> styling
         document.body.classList.add( 'tablature-player' );
         
-        this.sub = this.route.params.subscribe(params => {
+        this.routeParams$.subscribe( params => {
             this.tabId    = +params['id']; // (+) converts string 'id' to a number
             
             this.element        = $( "#alphaTab" ).get( 0 );
@@ -51,8 +52,6 @@ export class PlayerComponent implements OnInit, OnDestroy
     {
         // Change <body> styling
         document.body.classList.remove( 'tablature-player' );
-        
-        this.sub.unsubscribe();
     }
     
     alphatabInit(): void

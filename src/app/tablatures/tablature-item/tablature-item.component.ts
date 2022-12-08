@@ -8,7 +8,7 @@ import { IAuth } from '../../interfaces/auth';
 @Component({
     selector: 'tr[app-tablature-item]',
     templateUrl: './tablature-item.component.html',
-    styleUrls: ['./tablature-item.component.scss']
+    styleUrls: []
 })
 export class TablatureItemComponent implements OnInit
 {
@@ -39,7 +39,10 @@ export class TablatureItemComponent implements OnInit
                     //console.log( response );
                     this.router.navigate(['/my-tablatures'])
                         .then(() => {
+                        
                             window.location.reload();
+                        
+                        
                         });
                 },
                 error: ( err: any ) => {

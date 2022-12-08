@@ -14,7 +14,11 @@ import {
     
     loadMyFavorites,
     loadMyFavoritesFailure,
-    loadMyFavoritesSuccess
+    loadMyFavoritesSuccess,
+    
+    loadTablature,
+    loadTablatureFailure,
+    loadTablatureSuccess
 } from "./actions";
 
 import { ApiService } from "../services/api.service";
@@ -58,6 +62,14 @@ export class Effects
         switchMap( ( { limit } ) => this.apiService.loadMyFavorites( limit ).pipe(
             map( ( myFavorites: ITablature[] ) => loadMyFavoritesSuccess( { myFavorites } ) ),
             catchError( error => [loadMyFavoritesFailure( { error } )] )
+        ))
+    ));
+    
+    loadTablature = createEffect( (): any => this.actions$.pipe(
+        ofType( loadTablature ),
+        switchMap( ( { tabId } ) => this.apiService.loadTablature( tabId ).pipe(
+            map( ( tablature: ITablature ) => loadTablatureSuccess( { tablature } ) ),
+            catchError( error => [loadTablatureFailure( { error } )] )
         ))
     ));
 }

@@ -13,6 +13,10 @@ const actionTypes = {
     loadMyFavorites:                'LOAD_MY_FAVORITES',
     loadMyFavoritesSuccess:         'LOAD_MY_FAVORITES_SUCCESS',
     loadMyFavoritesFailure:         'LOAD_MY_FAVORITES_FAILURE',
+    
+    loadTablature:                  'LOAD_TABLATURE',
+    loadTablatureSuccess:           'LOAD_TABLATURE_SUCCESS',
+    loadTablatureFailure:           'LOAD_TABLATURE_FAILURE',
 };
 
 
@@ -28,3 +32,6 @@ export const loadMyFavorites                = createAction( actionTypes.loadMyFa
 export const loadMyFavoritesSuccess         = createAction( actionTypes.loadMyFavoritesSuccess, props<{ myFavorites: ITablature[] }>() );
 export const loadMyFavoritesFailure         = createAction( actionTypes.loadMyFavoritesFailure, props<{ error: any }>() );
 
+export const loadTablature                  = createAction( actionTypes.loadTablature, props<{ tabId: number }>() );
+export const loadTablatureSuccess           = createAction( actionTypes.loadTablatureSuccess, props<{ tablature: ITablature }>() );
+export const loadTablatureFailure           = createAction( actionTypes.loadTablatureFailure, props<{ error: any }>() );
