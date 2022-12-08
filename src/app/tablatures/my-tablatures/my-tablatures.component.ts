@@ -18,6 +18,7 @@ export class MyTablaturesComponent implements OnInit
 {
     auth?: IAuth | null = null;
     
+    showSpinner = true;
     tablatures$ = this.store.select( getMyTablatures );
     
     isFetchingTablatures$ = merge(
@@ -38,6 +39,9 @@ export class MyTablaturesComponent implements OnInit
     constructor( private localStore: LocalService, private store: Store, private actions$: Actions )
     {
         this.store.dispatch( loadMyTablatures( { limit: 10 } ) );
+        this.store.subscribe( ( state: any ) => {
+            this.showSpinner    = state.main.myTablatures == null;
+        });
     }
     
     ngOnInit(): void

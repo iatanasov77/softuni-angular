@@ -13,6 +13,7 @@ import { getLatestTablatures } from '../../+store/selectors';
 })
 export class LatestTablaturesComponent implements OnInit
 {
+    showSpinner = true;
     tablatures$ = this.store.select( getLatestTablatures );
     
     isFetchingTablatures$ = merge(
@@ -33,6 +34,9 @@ export class LatestTablaturesComponent implements OnInit
     constructor( private store: Store, private actions$: Actions )
     {
         this.store.dispatch( loadLatestTablatures( { limit: 10 } ) );
+        this.store.subscribe( ( state: any ) => {
+            this.showSpinner    = state.main.latestTablatures == null;
+        });
     }
     
     ngOnInit(): void

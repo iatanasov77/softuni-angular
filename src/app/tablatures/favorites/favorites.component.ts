@@ -13,6 +13,7 @@ import { getMyFavorites } from '../../+store/selectors';
 })
 export class FavoritesComponent implements OnInit
 {
+    showSpinner = true;
     tablatures$ = this.store.select( getMyFavorites );
     
     isFetchingTablatures$ = merge(
@@ -33,6 +34,9 @@ export class FavoritesComponent implements OnInit
     constructor( private store: Store, private actions$: Actions )
     {
         this.store.dispatch( loadMyFavorites( { limit: 10 } ) );
+        this.store.subscribe( ( state: any ) => {
+            this.showSpinner    = state.main.myFavorites == null;
+        });
     }
     
     ngOnInit(): void
