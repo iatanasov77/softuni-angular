@@ -10,7 +10,7 @@ declare var $: any;
 @Component({
   selector: 'app-tablature-create',
   templateUrl: './tablature-create.component.html',
-  styleUrls: ['./tablature-create.component.scss']
+  styleUrls: []
 })
 export class TablatureCreateComponent implements OnInit
 {

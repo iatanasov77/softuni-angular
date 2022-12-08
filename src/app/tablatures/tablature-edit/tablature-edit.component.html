@@ -28,10 +28,15 @@
                         type="text"
                         id="tablature_form_artist"
                         class="form-control"
+                        [ngClass]="{ 'is-invalid': tablatureForm.get('artist')?.touched && tablatureForm.get('artist')?.errors }"
                         
                         [value]="tablature?.artist"
                         formControlName="artist"
                     />
+                    
+                    <ng-container *ngIf="tablatureForm.get('artist')?.touched">
+	                    <div *ngIf="tablatureForm.get('artist')?.errors?.['required']" class="invalid-feedback">Artist is required</div>
+	                </ng-container>
                 </div>
                 
                 <div class="form-group">
@@ -40,20 +45,26 @@
                         type="text"
                         id="tablature_form_song"
                         class="form-control"
+                        [ngClass]="{ 'is-invalid': tablatureForm.get('song')?.touched && tablatureForm.get('song')?.errors }"
                         
                         [value]="tablature?.song"
                         formControlName="song"
                     />
+                    
+                    <ng-container *ngIf="tablatureForm.get('song')?.touched">
+	                    <div *ngIf="tablatureForm.get('song')?.errors?.['required']" class="invalid-feedback">Song is required</div>
+	                </ng-container>
                 </div>
                 
                 <div class="form-group">
                     <label for="tablature_form_tablature" class="required">Tablature</label>
-                    <div class="custom-file">
+                    <div class="custom-file" [ngClass]="{ 'is-invalid': tablatureForm.get('tablature')?.touched && tablatureForm.get('tablature')?.errors }">
                         <input
                             type="file"
                             accept=".gp,.gp3,.gp4,.gp5,audio/x-guitar-pro"
                             id="tablature_form_tablature"
                             class="custom-file-input"
+                            [ngClass]="{ 'is-invalid': tablatureForm.get('tablature')?.touched && tablatureForm.get('tablature')?.errors }"
                             
                             formControlName="tablature"
                             (change)="onSelectTablatureFile($event)"
@@ -64,6 +75,10 @@
                             for="tablature_form_tablature"
                         >{{ tablatureFileOriginalName }}</label>
                     </div>
+                    
+                    <ng-container *ngIf="tablatureForm.get('tablature')?.touched">
+	                    <div *ngIf="tablatureForm.get('tablature')?.errors?.['required']" class="invalid-feedback">Tablature File is required</div>
+	                </ng-container>
                 </div>
                 
                 <div class="row">&nbsp;</div>

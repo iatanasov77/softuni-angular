@@ -76,7 +76,7 @@
                     />
                     
                     <ng-container *ngIf="registerForm.get('email')?.touched">
-                        <div *ngIf="registerForm.get('email')?.errors?.['required']" class="invalid-feedback">Password is required</div>
+                        <div *ngIf="registerForm.get('email')?.errors?.['required']" class="invalid-feedback">Email is required</div>
                         <div *ngIf="registerForm.get('email')?.errors?.['email']" class="invalid-feedback">Email is Invalid</div>
                     </ng-container>
                 </div>
