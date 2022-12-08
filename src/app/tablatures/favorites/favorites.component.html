@@ -1,5 +1,4 @@
-<div *ngIf="errorFetcingData">Error loading Tablatures</div>
-<app-loader *ngIf="!tablatures"></app-loader>
+<app-loader *ngIf="(isFetchingTablatures$ | async)"></app-loader>
 
 <div class="tablatures-container" style="margin-top: 110px;">
     <div class="card">
@@ -15,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr app-tablature-item *ngFor="let tab of tablatures"
+                    <tr app-tablature-item *ngFor="let tab of tablatures$ | async"
                         [tablature]="tab"
                     >
                     </tr>

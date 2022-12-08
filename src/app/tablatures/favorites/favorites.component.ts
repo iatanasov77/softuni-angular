@@ -1,31 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApiService } from '../../services/api.service';
-import { ITablature } from '../../interfaces/tablature';
+import { Store } from '@ngrx/store';
+import { Actions, ofType } from '@ngrx/effects';
+import { map, merge } from 'rxjs';
+import { loadMyFavorites, loadMyFavoritesFailure, loadMyFavoritesSuccess } from '../../+store/actions';
+import { getUrl, getMyFavorites } from '../../+store/selectors';
 
 @Component({
     selector: 'app-favorites',
     templateUrl: './favorites.component.html',
-    styleUrls: ['./favorites.component.scss']
+    styleUrls: []
 })
 export class FavoritesComponent implements OnInit
 {
-
-    tablatures: ITablature[] | null = null;
-    errorFetcingData = false;
+    tablatures$ = this.store.select( getMyFavorites );
     
-    constructor( private apiService: ApiService ) { }
+    isFetchingTablatures$ = merge(
+        this.actions$.pipe(
+            ofType( loadMyFavorites ),
+            map( () => true )
+        ),
+        this.actions$.pipe(
+            ofType( loadMyFavoritesSuccess ),
+            map( () => false )
+        ),
+        this.actions$.pipe(
+            ofType( loadMyFavoritesFailure ),
+            map( () => false )
+        )
+    );
+    
+    constructor( private store: Store, private actions$: Actions )
+    {
+        this.store.dispatch( loadMyFavorites( { limit: 10 } ) );
+    }
     
     ngOnInit(): void
     {
-        this.apiService.loadMyFavorites( 10 ).subscribe({
-            next: ( response: any ) => {
-                this.tablatures = response;
-            },
-            error: ( err: any ) => {
-                this.errorFetcingData = true;
-                console.error( err );
-            }
-        });
+        
     }
 }

@@ -105,10 +105,10 @@ export class TablatureEditComponent implements OnInit
         let published   = this.tablatureForm.get( 'published' )?.value;
         //alert( published );
         formData.append( '_method', 'PUT' );
-        formData.append( 'published', published );
-        formData.append( 'artist', this.tablatureForm.get( 'artist' )?.value );
-        formData.append( 'song', this.tablatureForm.get( 'song' )?.value );
-        formData.append( 'tablature', this.tablatureForm.get( 'tablatureSource' )?.value );
+        formData.append( 'published', String( published ) );
+        formData.append( 'artist', String( this.tablatureForm.get( 'artist' )?.value ) );
+        formData.append( 'song', String( this.tablatureForm.get( 'song' )?.value ) );
+        formData.append( 'tablature', String( this.tablatureForm.get( 'tablatureSource' )?.value ) );
         
         if ( this.tablature && this.tablature.id ) {
             this.apiService.updateTablature( this.tablature.id, formData ).subscribe({

@@ -1,6 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers } from './+store';
+import { CustomSerializer } from './+store/router';
+import { Effects } from './+store/effects';
+
 import { CoreModule } from './core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -62,6 +70,10 @@ export function RestangularConfigFactory ( RestangularProvider: any ) {
         AppRoutingModule,
         RestangularModule.forRoot( RestangularConfigFactory ),
         
+        StoreRouterConnectingModule.forRoot( { serializer: CustomSerializer } ),
+        StoreModule.forRoot( reducers ),
+        EffectsModule.forRoot( [Effects] ),
+    
         SharedModule,
         PlayerModule,
         TablaturesModule,

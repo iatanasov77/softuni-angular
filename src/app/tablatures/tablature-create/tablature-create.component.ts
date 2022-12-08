@@ -68,14 +68,14 @@ export class TablatureCreateComponent implements OnInit {
     
     handleSubmit(): void
     {
-        let formData = new FormData();
+        let formData    = new FormData();
         
         let published   = this.tablatureForm.get( 'published' )?.value;
         //alert( published );
-        formData.append( 'published', published );
-        formData.append( 'artist', this.tablatureForm.get( 'artist' )?.value );
-        formData.append( 'song', this.tablatureForm.get( 'song' )?.value );
-        formData.append( 'tablature', this.tablatureForm.get( 'tablatureSource' )?.value );
+        formData.append( 'published', String( published ) );
+        formData.append( 'artist', String( this.tablatureForm.get( 'artist' )?.value ) );
+        formData.append( 'song', String( this.tablatureForm.get( 'song' )?.value ) );
+        formData.append( 'tablature', String( this.tablatureForm.get( 'tablatureSource' )?.value ) );
         
         this.apiService.createTablature( formData ).subscribe({
             next: ( response: any ) => {

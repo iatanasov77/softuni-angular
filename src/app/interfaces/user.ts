@@ -1,6 +1,8 @@
+import { ITablature } from './tablature';
+
 export interface IUser
 {
-    tablatures: any[];
+    tablatures: ITablature[];
     
     id: number;
     email: string;
