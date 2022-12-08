@@ -132,8 +132,9 @@ export class TablatureEditComponent implements OnInit
         formData.append( 'song', String( this.tablatureForm.get( 'song' )?.value ) );
         formData.append( 'tablature', tabFile as any );
         
-        if ( this.tablature && this.tablature.id ) {
-            this.apiService.updateTablature( this.tablature.id, formData ).subscribe({
+        let tabId   = Number( this.tablature?.id );
+        if ( Number.isInteger( tabId ) ) {
+            this.apiService.updateTablature( tabId, formData ).subscribe({
                 next: ( response: any ) => {
                     //console.log( response );
                     this.router.navigate(['/my-tablatures'])
