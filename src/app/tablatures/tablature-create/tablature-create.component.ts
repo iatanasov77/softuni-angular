@@ -31,7 +31,18 @@ export class TablatureCreateComponent implements OnInit
     ngOnInit(): void {
         
     }
-  
+
+    clearForm()
+    {
+        this.tablatureForm.setValue({
+            published: false,
+            artist: '',
+            song: '',
+            tablature: '',
+            tablatureSource: new Blob()
+        });
+    }
+    
     onCheckboxChange( e: any )
     {
         this.tablatureForm.patchValue({
@@ -62,7 +73,7 @@ export class TablatureCreateComponent implements OnInit
         }
         $( '#tablature_form_tablature_label' ).html( file.name );
         
-        return true
+        return true;
     };
     
     handleSubmit(): void
@@ -80,9 +91,11 @@ export class TablatureCreateComponent implements OnInit
         this.apiService.createTablature( formData ).subscribe({
             next: ( response: any ) => {
                 //console.log( response );
+                this.clearForm();
+                
                 this.router.navigate(['/my-tablatures'])
                     .then(() => {
-                        //window.location.reload();
+                        window.location.reload();
                     });
             },
             error: ( err: any ) => {
