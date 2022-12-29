@@ -2,7 +2,7 @@
 <td>{{ tablature?.song }}</td>
 
 <td *ngIf="currentRoute != '/my-tablatures'">
-    {{ tablature?.user?.info?.firstName }} {{ tablature?.user.info.lastName }}
+    {{ tablature?.user?.info?.firstName }} {{ tablature?.user?.info?.lastName }}
 </td>
 <td *ngIf="currentRoute == '/my-tablatures'">
     <i *ngIf="tablature?.enabled" class="fas fa-check" style="color: #82c91e;"></i>
