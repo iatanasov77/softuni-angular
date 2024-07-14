@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    backendURL: 'http://softuni-api.lh'
+    //backendURL: 'http://softuni-api.lh'
+    backendURL: 'http://api.wgp.lh/api'
 };
 
 /*

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 import { Restangular } from 'ngx-restangular';
 
 import { LocalService } from './local.service';
@@ -65,10 +66,16 @@ export class ApiService
     {
         let limitParam  = limit ? limit : '';
         
-        return this.restangular.all( "my-tablatures" ).customGET( '',
+        let tablatures	= this.restangular.all( "my-tablatures" ).customGET( '',
             {itemsPerPage: limitParam},
             {Authorization: 'Bearer ' + this.getApiToken()}
         );
+        
+        return tablatures;
+       	//return Object.values( tablatures );
+//        	return Promise.all( Object.values( tablatures ) ).then( ( values ) => {
+// 			console.log( values );
+// 		});
     }
     
     loadMyFavorites( limit?: number )

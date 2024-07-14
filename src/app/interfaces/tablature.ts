@@ -10,8 +10,6 @@ export interface ITablature
     tablatureFile: any;
     
     user: any;
-    createdBy: string;
-    updatedBy: string;
     createdAt: string;
     updatedAt: string;
     

@@ -27,7 +27,7 @@ export class TablatureItemComponent implements OnInit
     
     ngOnInit(): void
     {
-        //alert( this?.tablature?.createdBy );
+        //alert( this?.tablature?.user?.username );
         //alert( this?.auth?.username );
     }
     

@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody *ngIf="!(isFetchingTablatures$ | async)">
-                    <tr app-tablature-item *ngFor="let tab of tablatures$ | async"
+                    <tr app-tablature-item *ngFor="let tab of tablatures"
                         [tablature]="tab" [auth]="auth"
                     >
                     </tr>

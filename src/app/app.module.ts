@@ -24,7 +24,7 @@ import { RestangularModule } from 'ngx-restangular';
 import { environment } from '../environments/environment';
 
 export function RestangularConfigFactory ( RestangularProvider: any ) {
-    RestangularProvider.setBaseUrl( environment.backendURL + '/api' );
+    RestangularProvider.setBaseUrl( environment.backendURL );
     
     RestangularProvider.addResponseInterceptor( ( data: any, operation: any ) => {
         function populateHref( _data: any ) {
